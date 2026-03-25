@@ -2,6 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+
+// Trang chủ - redirect sang categories
+Route::get('/', function () {
+    return redirect()->route('categories.index');
+});
+
+// Routes CRUD cho Categories và Products
+Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
 
 Route::get('/txn', function(){
     $query = DB::table('tin')
